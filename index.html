@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>AG Automation — AI-Powered Growth for Canadian Businesses</title>
+<meta name="description" content="We build websites, set up your Google presence, and automate your marketing. You only pay when you love the result.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','system-ui','sans-serif'],display:['Space Grotesk','Inter','sans-serif']},colors:{void:'#020204',voidlight:'#08080f',voidcard:'#0e0e16',neon:{cyan:'#00f0ff',purple:'#a855f7',pink:'#ff2d95',blue:'#3b82f6',gold:'#f59e0b'}}}}};
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#020204;color:#e2e8f0;font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:rgba(0,240,255,0.25);color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#020204}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#00f0ff,#a855f7);border-radius:3px}
+#cvs{position:fixed;inset:0;z-index:0;pointer-events:none}
+.grid-bg{position:fixed;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(0,240,255,0.025)1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,0.025)1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,black 40%,transparent 80%)}
+.noise{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px}
+.glass{background:rgba(14,14,22,0.65);backdrop-filter:blur(24px) saturate(1.2);border:1px solid rgba(255,255,255,0.06)}
+.glass-strong{background:rgba(14,14,22,0.85);backdrop-filter:blur(32px) saturate(1.3);border:1px solid rgba(255,255,255,0.08)}
+.gradient-text{background:linear-gradient(135deg,#00f0ff 0%,#a855f7 50%,#ff2d95 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gradient-text-cyan{background:linear-gradient(135deg,#00f0ff,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn-primary{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 36px;background:linear-gradient(135deg,#00f0ff,#a855f7);border-radius:100px;color:#020204;font-weight:700;font-size:15px;letter-spacing:-0.01em;cursor:pointer;border:none;overflow:hidden;transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s}
+.btn-primary::before{content:'';position:absolute;inset:0;background:inherit;border-radius:inherit;filter:blur(20px);opacity:0;transition:opacity 0.3s;z-index:-1}
+.btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 40px rgba(0,240,255,0.25),0 0 80px rgba(168,85,247,0.15)}
+.btn-primary:hover::before{opacity:0.6}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 36px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:100px;color:#fff;font-weight:600;font-size:15px;cursor:pointer;transition:all 0.3s cubic-bezier(0.22,1,0.36,1)}
+.btn-secondary:hover{border-color:rgba(0,240,255,0.4);background:rgba(0,240,255,0.05);transform:translateY(-2px)}
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#00f0ff;margin-bottom:16px;display:block}
+.card-hover{transition:transform 0.5s cubic-bezier(0.22,1,0.36,1),box-shadow 0.5s}
+.card-hover:hover{transform:translateY(-8px);box-shadow:0 24px 64px rgba(0,0,0,0.4),0 0 40px rgba(0,240,255,0.08)}
+.glow-line{height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.4),rgba(168,85,247,0.4),transparent);border:none}
+.nav-link{position:relative;color:rgba(255,255,255,0.6);font-size:14px;font-weight:500;transition:color 0.3s;text-decoration:none}
+.nav-link:hover{color:#fff}
+.nav-link::after{content:'';position:absolute;bottom:-6px;left:50%;width:0;height:2px;background:linear-gradient(90deg,#00f0ff,#a855f7);transition:all 0.3s cubic-bezier(0.22,1,0.36,1);transform:translateX(-50%);border-radius:2px}
+.nav-link:hover::after{width:100%}
+.mobile-menu{position:fixed;inset:0;z-index:100;background:rgba(2,2,4,0.98);backdrop-filter:blur(40px);display:flex;flex-direction:column;padding:32px 24px;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1)}
+.mobile-menu.open{transform:translateX(0)}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;will-change:transform}
+.stat-number{font-family:'Space Grotesk',sans-serif;font-size:56px;font-weight:700;line-height:1;background:linear-gradient(135deg,#00f0ff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+@media(max-width:768px){.stat-number{font-size:40px}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-50px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.reveal-left.active{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(50px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.reveal-right.active{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.92);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+.reveal-scale.active{opacity:1;transform:scale(1)}
+.stagger-parent .stagger-child{opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1)}
+.stagger-parent.active .stagger-child:nth-child(1){transition-delay:0.08s;opacity:1;transform:translateY(0)}
+.stagger-parent.active .stagger-child:nth-child(2){transition-delay:0.16s;opacity:1;transform:translateY(0)}
+.stagger-parent.active .stagger-child:nth-child(3){transition-delay:0.24s;opacity:1;transform:translateY(0)}
+.stagger-parent.active .stagger-child:nth-child(4){transition-delay:0.32s;opacity:1;transform:translateY(0)}
+.stagger-parent.active .stagger-child:nth-child(5){transition-delay:0.40s;opacity:1;transform:translateY(0)}
+.stagger-parent.active .stagger-child:nth-child(6){transition-delay:0.48s;opacity:1;transform:translateY(0)}
+.demo-panel{display:none}
+.demo-panel.active{display:block;animation:fadeIn 0.4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.tab-btn{padding:10px 20px;border-radius:100px;border:1px solid transparent;background:transparent;color:rgba(255,255,255,0.5);font-size:13px;font-weight:500;cursor:pointer;transition:all 0.3s;white-space:nowrap}
+.tab-btn:hover{color:rgba(255,255,255,0.8)}
+.tab-btn.active{background:rgba(0,240,255,0.08);border-color:rgba(0,240,255,0.25);color:#00f0ff}
+.chat-bubble{animation:popIn 0.35s cubic-bezier(0.22,1,0.36,1)}
+@keyframes popIn{from{opacity:0;transform:translateY(12px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.wave-bar{display:inline-block;width:3px;background:linear-gradient(180deg,#00f0ff,#a855f7);border-radius:3px;animation:wave 1.2s ease-in-out infinite}
+@keyframes wave{0%,100%{height:12%}50%{height:100%}}
+.pulse-ring{position:relative}
+.pulse-ring::before{content:'';position:absolute;inset:-4px;border-radius:inherit;border:2px solid rgba(0,240,255,0.3);animation:pulseOut 2s ease-out infinite}
+@keyframes pulseOut{0%{transform:scale(1);opacity:1}100%{transform:scale(1.12);opacity:0}}
+.shine{position:relative;overflow:hidden}
+.shine::after{content:'';position:absolute;top:-50%;left:-60%;width:60%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);transform:rotate(25deg) translateX(-100%);transition:transform 0.8s}
+.shine:hover::after{transform:rotate(25deg) translateX(300%)}
+.contact-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(0,240,255,0.1),rgba(168,85,247,0.1));border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s}
+.contact-icon:hover{border-color:rgba(0,240,255,0.3);transform:scale(1.08)}
+@media(max-width:1024px){.hide-mobile{display:none!important}}
+@media(min-width:1025px){.hide-desktop{display:none!important}}
+</style>
+</head>
+<body>
+<canvas id="cvs"></canvas>
+<div class="grid-bg"></div>
+<div class="noise"></div>
+
+<div class="orb" style="width:600px;height:600px;background:radial-gradient(circle,rgba(0,240,255,0.18),transparent 70%);top:-10%;left:-10%"></div>
+<div class="orb" style="width:700px;height:700px;background:radial-gradient(circle,rgba(168,85,247,0.15),transparent 70%);top:40%;right:-15%;animation:orbFloat 12s ease-in-out infinite alternate"></div>
+<div class="orb" style="width:400px;height:400px;background:radial-gradient(circle,rgba(255,45,149,0.12),transparent 70%);bottom:10%;left:25%;animation:orbFloat 15s ease-in-out infinite alternate-reverse"></div>
+<style>@keyframes orbFloat{0%{transform:translate(0,0)scale(1)}50%{transform:translate(40px,-30px)scale(1.08)}100%{transform:translate(-20px,20px)scale(0.95)}}</style>
+
+<!-- NAV -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+<div class="max-w-7xl mx-auto px-6 py-4">
+<div id="navBox" class="flex items-center justify-between rounded-full px-6 py-3 transition-all duration-500">
+<a href="#" class="flex items-center gap-3 z-10">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center shadow-lg shadow-neon-cyan/20">
+<span class="text-white font-bold text-lg" style="font-family:'Space Grotesk',sans-serif">AG</span>
+</div>
+<span class="font-display font-bold text-lg text-white tracking-tight">AG Automation</span>
+</a>
+<div class="hidden lg:flex items-center gap-10">
+<a href="#services" class="nav-link">Services</a>
+<a href="#ai-demos" class="nav-link">AI Demos</a>
+<a href="#how-it-works" class="nav-link">How It Works</a>
+<a href="#why-us" class="nav-link">Why Us</a>
+<a href="#about" class="nav-link">About</a>
+</div>
+<div class="hidden lg:block">
+<a href="https://calendly.com/agautomationteam/30min" target="_blank" class="btn-primary text-sm py-2.5 px-6">Book Free Call</a>
+</div>
+<button id="menuBtn" class="lg:hidden text-white text-2xl p-2 z-10"><i class="fas fa-bars"></i></button>
+</div>
+</div>
+</nav>
+
+<div id="mobileMenu" class="mobile-menu">
+<div class="flex justify-between items-center mb-16">
+<span class="font-display font-bold text-xl text-white">Menu</span>
+<button id="closeMenu" class="text-white text-2xl p-2"><i class="fas fa-times"></i></button>
+</div>
+<div class="flex flex-col gap-8">
+<a href="#services" class="text-3xl text-white font-display font-medium mobile-link">Services</a>
+<a href="#ai-demos" class="text-3xl text-white font-display font-medium mobile-link">AI Demos</a>
+<a href="#how-it-works" class="text-3xl text-white font-display font-medium mobile-link">How It Works</a>
+<a href="#why-us" class="text-3xl text-white font-display font-medium mobile-link">Why Us</a>
+<a href="#about" class="text-3xl text-white font-display font-medium mobile-link">About</a>
+<a href="#contact" class="text-3xl text-white font-display font-medium mobile-link">Contact</a>
+</div>
+<div class="mt-auto pt-8 border-t border-white/10">
+<a href="tel:+18257863021" class="flex items-center gap-3 text-gray-400 mb-4"><i class="fas fa-phone text-neon-cyan"></i>+1 (825) 786-3021</a>
+<a href="mailto:agautomationteam@gmail.com" class="flex items-center gap-3 text-gray-400 mb-6"><i class="fas fa-envelope text-neon-purple"></i>agautomationteam@gmail.com</a>
+<a href="https://calendly.com/agautomationteam/30min" target="_blank" class="btn-primary w-full text-center">Book Free Consultation</a>
+</div>
+</div>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-20 overflow-hidden">
+<div class="max-w-5xl mx-auto text-center relative z-10">
+<div class="reveal">
+<div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full glass mb-10">
+<span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400"></span></span>
+<span class="text-sm text-gray-300 font-medium">Now welcoming new clients across Canada</span>
+</div>
+</div>
+<h1 class="reveal font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-[1.05] mb-8 tracking-tight">
+Your business<br><span class="gradient-text">deserves to be found.</span>
+</h1>
+<p class="reveal text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed" style="transition-delay:0.1s">
+We build websites, set up your Google presence, and automate your marketing — so new customers can find you online while you focus on what you do best.
+</p>
+<div class="reveal flex flex-col sm:flex-row gap-4 justify-center mb-14" style="transition-delay:0.2s">
+<a href="https://calendly.com/agautomationteam/30min" target="_blank" class="btn-primary text-base">
+<i class="fas fa-calendar-check"></i>Book Free Consultation
+</a>
+<a href="#ai-demos" class="btn-secondary text-base">
+<i class="fas fa-play text-xs"></i>Try AI Demos
+</a>
+</div>
+<div class="reveal flex flex-wrap justify-center gap-8 text-sm" style="transition-delay:0.3s">
+<span class="flex items-center gap-2 text-gray-400"><i class="fas fa-shield-alt text-neon-cyan"></i>No payment until you're happy</span>
+<span class="flex items-center gap-2 text-gray-400"><i class="fas fa-bolt text-neon-purple"></i>5–7 day delivery</span>
+<span class="flex items-center gap-2 text-gray-400"><i class="fas fa-check-circle text-neon-pink"></i>100% satisfaction guarantee</span>
+</div>
+<div class="reveal absolute -bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 md:bottom-16" style="transition-delay:0.5s">
+<div class="glass rounded-2xl p-5 max-w-xs" style="animation:float 7s ease-in-out infinite">
+<div class="flex items-start gap-3">
+<div class="w-11 h-11 rounded-full bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center flex-shrink-0 shadow-lg shadow-neon-cyan/20">
+<i class="fas fa-handshake text-white text-sm"></i>
+</div>
+<div>
+<p class="text-white font-semibold text-sm leading-snug">You <em class="not-italic text-neon-cyan">only pay when you love</em> the result.</p>
+<p class="text-gray-500 text-xs mt-1.5">Not satisfied? You owe us nothing — ever.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="py-28 px-6 relative z-10">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-20">
+<span class="reveal section-label">Who we serve</span>
+<h2 class="reveal font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-6 tracking-tight">Built for businesses that<br><span class="gradient-text">communities depend on.</span></h2>
+<p class="reveal text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed" style="transition-delay:0.1s">We specialize in the hardworking, owner-operated businesses that big agencies overlook. Whether you're just starting out or have been running your business for years — we're here for you.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-6 stagger-parent">
+<div class="glass rounded-2xl p-8 card-hover shine stagger-child">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-cyan/15 to-transparent flex items-center justify-center mb-6 border border-neon-cyan/20">
+<i class="fas fa-tools text-neon-cyan text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Trades & service companies</h3>
+<p class="text-gray-400 leading-relaxed text-[15px]">HVAC, electricians, plumbers, painters — we get you found when customers are searching right now.</p>
+</div>
+<div class="glass rounded-2xl p-8 card-hover shine stagger-child">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-purple/15 to-transparent flex items-center justify-center mb-6 border border-neon-purple/20">
+<i class="fas fa-utensils text-neon-purple text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Restaurants & food businesses</h3>
+<p class="text-gray-400 leading-relaxed text-[15px]">Amazing food deserves to be discovered. We build the online presence that brings new tables in.</p>
+</div>
+<div class="glass rounded-2xl p-8 card-hover shine stagger-child">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-pink/15 to-transparent flex items-center justify-center mb-6 border border-neon-pink/20">
+<i class="fas fa-seedling text-neon-pink text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">New & growing entrepreneurs</h3>
+<p class="text-gray-400 leading-relaxed text-[15px]">Whatever stage you're at — we'll build the digital foundation your business needs to grow with confidence.</p>
+</div>
+</div>
+<div class="mt-16 grid md:grid-cols-3 gap-6 stagger-parent">
+<div class="reveal-left glass rounded-2xl p-6 border-l-2 border-neon-cyan stagger-child">
+<div class="flex items-center gap-3 mb-3">
+<i class="fas fa-wrench text-neon-cyan text-lg"></i>
+<h4 class="font-semibold text-white">Trades & contractors</h4>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed">HVAC, plumbers, electricians, roofers, painters — we make sure you show up when someone nearby is searching for your services, day or night.</p>
+</div>
+<div class="reveal glass rounded-2xl p-6 border-l-2 border-neon-purple stagger-child" style="transition-delay:0.1s">
+<div class="flex items-center gap-3 mb-3">
+<i class="fas fa-store text-neon-purple text-lg"></i>
+<h4 class="font-semibold text-white">Small business owners</h4>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed">Owner-operated shops, service providers, and local businesses. You built something real — let's make sure people can find it online.</p>
+</div>
+<div class="reveal-right glass rounded-2xl p-6 border-l-2 border-neon-pink stagger-child" style="transition-delay:0.2s">
+<div class="flex items-center gap-3 mb-3">
+<i class="fas fa-rocket text-neon-pink text-lg"></i>
+<h4 class="font-semibold text-white">Newcomers & entrepreneurs</h4>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed">You came here and built something remarkable. We help you compete online with the same tools that big businesses use — at a price that makes sense.</p>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="py-28 px-6 relative z-10">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-20">
+<span class="reveal section-label">How it works</span>
+<h2 class="reveal font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white tracking-tight">From invisible to <span class="gradient-text">online</span><br>in days, not months.</h2>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-parent">
+<div class="glass rounded-2xl p-8 relative overflow-hidden card-hover stagger-child">
+<div class="absolute top-5 right-5 text-7xl font-display font-bold text-white/[0.03]">01</div>
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center mb-6 shadow-lg shadow-neon-cyan/10">
+<i class="fas fa-comments text-white text-lg"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-3">Free consultation</h3>
+<p class="text-gray-400 text-sm leading-relaxed">30 minutes. We audit your current online presence, find exactly what's missing, and walk you through what we'd build — at no charge.</p>
+</div>
+<div class="glass rounded-2xl p-8 relative overflow-hidden card-hover stagger-child">
+<div class="absolute top-5 right-5 text-7xl font-display font-bold text-white/[0.03]">02</div>
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-purple to-neon-pink flex items-center justify-center mb-6 shadow-lg shadow-neon-purple/10">
+<i class="fas fa-cogs text-white text-lg"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-3">We build everything</h3>
+<p class="text-gray-400 text-sm leading-relaxed">Website, Google listing, automation — you give us the go-ahead and we handle the rest. No technical knowledge required from you.</p>
+</div>
+<div class="glass rounded-2xl p-8 relative overflow-hidden card-hover stagger-child">
+<div class="absolute top-5 right-5 text-7xl font-display font-bold text-white/[0.03]">03</div>
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-pink to-neon-blue flex items-center justify-center mb-6 shadow-lg shadow-neon-pink/10">
+<i class="fas fa-check-double text-white text-lg"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-3">You approve — or walk away free</h3>
+<p class="text-gray-400 text-sm leading-relaxed">Review the work. Love it, and we proceed. Not satisfied? You owe us absolutely nothing. No pressure, no contracts, no risk.</p>
+</div>
+<div class="glass rounded-2xl p-8 relative overflow-hidden card-hover stagger-child">
+<div class="absolute top-5 right-5 text-7xl font-display font-bold text-white/[0.03]">04</div>
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-blue to-neon-cyan flex items-center justify-center mb-6 shadow-lg shadow-neon-blue/10">
+<i class="fas fa-sync text-white text-lg"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-3">We keep it running</h3>
+<p class="text-gray-400 text-sm leading-relaxed">Monthly updates, maintenance, and monitoring. You run your business — we keep your digital presence sharp and working hard for you.</p>
+</div>
+</div>
+</div>
+</section>
+
+<div class="glow-line max-w-4xl mx-auto relative z-10"></div>
+
+<!-- AI SERVICES & DEMOS -->
+<section id="ai-demos" class="py-28 px-6 relative z-10">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-20">
+<span class="reveal section-label">AI-Powered Solutions</span>
+<h2 class="reveal font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white tracking-tight">Meet your new<br><span class="gradient-text">AI workforce.</span></h2>
+<p class="reveal text-gray-400 text-lg max-w-2xl mx-auto mt-6 leading-relaxed" style="transition-delay:0.1s">We build intelligent AI agents that work 24/7 — answering calls, qualifying leads, booking appointments, and generating instant quotes. Try the demos below.</p>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16 stagger-parent">
+<div class="glass rounded-2xl p-6 card-hover shine stagger-child cursor-pointer" onclick="showDemo('chatbot')">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-cyan/15 to-transparent flex items-center justify-center mb-4 border border-neon-cyan/20">
+<i class="fas fa-robot text-neon-cyan text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-2">AI Chatbots</h3>
+<p class="text-gray-400 text-sm mb-4 leading-relaxed">Smart conversational agents that answer questions, qualify leads, and guide visitors on your website 24/7.</p>
+<span class="text-neon-cyan text-sm font-medium flex items-center gap-1.5"><i class="fas fa-play-circle text-xs"></i>Try Live Demo</span>
+</div>
+<div class="glass rounded-2xl p-6 card-hover shine stagger-child cursor-pointer" onclick="showDemo('leadgen')">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-purple/15 to-transparent flex items-center justify-center mb-4 border border-neon-purple/20">
+<i class="fas fa-filter text-neon-purple text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-2">Lead Generation Bots</h3>
+<p class="text-gray-400 text-sm mb-4 leading-relaxed">Automated lead capture that qualifies prospects, collects contact info, and books appointments while you sleep.</p>
+<span class="text-neon-purple text-sm font-medium flex items-center gap-1.5"><i class="fas fa-play-circle text-xs"></i>Try Live Demo</span>
+</div>
+<div class="glass rounded-2xl p-6 card-hover shine stagger-child cursor-pointer" onclick="showDemo('voice')">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-pink/15 to-transparent flex items-center justify-center mb-4 border border-neon-pink/20">
+<i class="fas fa-phone-alt text-neon-pink text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-2">AI Voice Agents</h3>
+<p class="text-gray-400 text-sm mb-4 leading-relaxed">Human-like voice AI that handles inbound calls, answers questions, and routes important calls to you.</p>
+<span class="text-neon-pink text-sm font-medium flex items-center gap-1.5"><i class="fas fa-play-circle text-xs"></i>Try Live Demo</span>
+</div>
+<div class="glass rounded-2xl p-6 card-hover shine stagger-child cursor-pointer" onclick="showDemo('receptionist')">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue/15 to-transparent flex items-center justify-center mb-4 border border-neon-blue/20">
+<i class="fas fa-headset text-neon-blue text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-2">AI Receptionists</h3>
+<p class="text-gray-400 text-sm mb-4 leading-relaxed">Never miss a call again. Your AI receptionist books appointments, takes messages, and handles routine inquiries.</p>
+<span class="text-neon-blue text-sm font-medium flex items-center gap-1.5"><i class="fas fa-play-circle text-xs"></i>Try Live Demo</span>
+</div>
+<div class="glass rounded-2xl p-6 card-hover shine stagger-child cursor-pointer" onclick="showDemo('quote')">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400/15 to-transparent flex items-center justify-center mb-4 border border-green-400/20">
+<i class="fas fa-calculator text-green-400 text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-2">Instant Quote Calculator</h3>
+<p class="text-gray-400 text-sm mb-4 leading-relaxed">Interactive pricing tools that give potential customers accurate estimates instantly, 24 hours a day.</p>
+<span class="text-green-400 text-sm font-medium flex items-center gap-1.5"><i class="fas fa-play-circle text-xs"></i>Try Live Demo</span>
+</div>
+<div class="glass rounded-2xl p-6 card-hover shine stagger-child cursor-pointer" onclick="showDemo('automation')">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-400/15 to-transparent flex items-center justify-center mb-4 border border-orange-400/20">
+<i class="fas fa-bolt text-orange-400 text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-2">Marketing Automation</h3>
+<p class="text-gray-400 text-sm mb-4 leading-relaxed">Complete follow-up sequences: missed call texts, review requests, appointment reminders — all automated.</p>
+<span class="text-orange-400 text-sm font-medium flex items-center gap-1.5"><i class="fas fa-play-circle text-xs"></i>See Workflow</span>
+</div>
+</div>
+
+<!-- DEMO PANEL -->
+<div class="reveal-scale">
+<div class="glass rounded-3xl p-1 overflow-hidden">
+<div class="bg-voidlight rounded-[22px] p-6 md:p-10">
+<div class="flex flex-wrap gap-2 mb-8 overflow-x-auto pb-2">
+<button onclick="switchDemo('chatbot')" id="tab-chatbot" class="tab-btn active"><i class="fas fa-robot mr-1.5"></i>AI Chatbot</button>
+<button onclick="switchDemo('leadgen')" id="tab-leadgen" class="tab-btn"><i class="fas fa-filter mr-1.5"></i>Lead Gen</button>
+<button onclick="switchDemo('voice')" id="tab-voice" class="tab-btn"><i class="fas fa-phone-alt mr-1.5"></i>Voice Agent</button>
+<button onclick="switchDemo('receptionist')" id="tab-receptionist" class="tab-btn"><i class="fas fa-headset mr-1.5"></i>Receptionist</button>
+<button onclick="switchDemo('quote')" id="tab-quote" class="tab-btn"><i class="fas fa-calculator mr-1.5"></i>Quote</button>
+</div>
+
+<!-- Chatbot Demo -->
+<div id="demo-chatbot" class="demo-panel active">
+<div class="max-w-md mx-auto">
+<div class="glass rounded-2xl overflow-hidden border border-white/10">
+<div class="p-4 border-b border-white/10 flex items-center gap-3 bg-white/[0.02]">
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center">
+<i class="fas fa-robot text-white text-sm"></i>
+</div>
+<div>
+<p class="text-white font-medium text-sm">AG AI Assistant</p>
+<p class="text-green-400 text-xs flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>Online now</p>
+</div>
+</div>
+<div id="chatBox" class="p-4 h-72 overflow-y-auto space-y-3">
+<div class="chat-bubble flex gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-neon-cyan to-neon-purple flex-shrink-0 flex items-center justify-center"><i class="fas fa-robot text-white text-xs"></i></div>
+<div class="glass rounded-2xl rounded-tl-sm px-4 py-3 max-w-[82%]"><p class="text-gray-300 text-sm leading-relaxed">Hi! I'm AG Automation's AI assistant. I can help answer questions about our services, pricing, or book you a free consultation. What can I help you with today?</p></div>
+</div>
+</div>
+<div class="p-4 border-t border-white/10 bg-white/[0.02]">
+<div class="flex gap-2 mb-3">
+<input type="text" id="chatInput" placeholder="Type your message..." class="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-neon-cyan/40 transition-colors" onkeypress="if(event.key==='Enter')sendChat()">
+<button onclick="sendChat()" class="w-10 h-10 rounded-full bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center hover:scale-110 transition-transform flex-shrink-0"><i class="fas fa-paper-plane text-white text-xs"></i></button>
+</div>
+<div class="flex gap-2 flex-wrap">
+<button onclick="quickChat('What services do you offer?')" class="text-xs px-3 py-1.5 rounded-full bg-white/5 text-gray-400 hover:bg-neon-cyan/10 hover:text-neon-cyan transition-colors border border-transparent hover:border-neon-cyan/20">What services do you offer?</button>
+<button onclick="quickChat('How much does it cost?')" class="text-xs px-3 py-1.5 rounded-full bg-white/5 text-gray-400 hover:bg-neon-cyan/10 hover:text-neon-cyan transition-colors border border-transparent hover:border-neon-cyan/20">How much does it cost?</button>
+<button onclick="quickChat('Book a consultation')" class="text-xs px-3 py-1.5 rounded-full bg-white/5 text-gray-400 hover:bg-neon-cyan/10 hover:text-neon-cyan transition-colors border border-transparent hover:border-neon-cyan/20">Book a consultation</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Lead Gen Demo -->
+<div id="demo-leadgen" class="demo-panel">
+<div class="max-w-md mx-auto">
+<div id="leadForm" class="glass rounded-2xl p-6 border border-white/10">
+<h3 class="text-white font-semibold mb-1">Get Your Free Digital Audit</h3>
+<p class="text-gray-400 text-sm mb-6">See how visible your business is online. We'll analyze your Google presence, website, and competitors.</p>
+<div class="space-y-4">
+<div><label class="text-gray-500 text-xs mb-1.5 block font-medium">Business Name</label><input type="text" id="leadName" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-purple/40 transition-colors" placeholder="e.g. Mike's HVAC"></div>
+<div><label class="text-gray-500 text-xs mb-1.5 block font-medium">Phone Number</label><input type="tel" id="leadPhone" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-purple/40 transition-colors" placeholder="(825) 786-3021"></div>
+<div><label class="text-gray-500 text-xs mb-1.5 block font-medium">Business Type</label><select id="leadType" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-purple/40 transition-colors appearance-none cursor-pointer"><option value="" class="bg-voidlight">Select your industry</option><option value="hvac" class="bg-voidlight">HVAC / Heating & Cooling</option><option value="plumbing" class="bg-voidlight">Plumbing</option><option value="electrical" class="bg-voidlight">Electrical</option><option value="restaurant" class="bg-voidlight">Restaurant / Food</option><option value="other" class="bg-voidlight">Other Service Business</option></select></div>
+<button onclick="submitLead()" class="w-full btn-primary py-3 rounded-xl text-sm">Get My Free Audit</button>
+</div>
+</div>
+<div id="leadSuccess" class="hidden glass rounded-2xl p-8 text-center border border-white/10">
+<div class="w-16 h-16 rounded-full bg-gradient-to-br from-neon-purple to-neon-pink flex items-center justify-center mx-auto mb-5 shadow-lg shadow-neon-purple/20"><i class="fas fa-check text-white text-2xl"></i></div>
+<h3 class="text-white font-semibold text-lg mb-2">Audit Request Received!</h3>
+<p class="text-gray-400 text-sm mb-6">Our AI has logged your request. An expert will call you within 2 hours with your complete digital presence report.</p>
+<div class="glass rounded-xl p-4 text-left border border-white/5">
+<p class="text-xs text-gray-600 mb-3 font-semibold uppercase tracking-wider">Lead Captured — Automated Workflow:</p>
+<div class="space-y-2.5">
+<div class="flex items-center gap-2.5 text-xs text-green-400"><i class="fas fa-check-circle w-4"></i>Lead saved to CRM</div>
+<div class="flex items-center gap-2.5 text-xs text-green-400"><i class="fas fa-check-circle w-4"></i>Notification sent to sales team</div>
+<div class="flex items-center gap-2.5 text-xs text-green-400"><i class="fas fa-check-circle w-4"></i>Follow-up sequence scheduled</div>
+<div class="flex items-center gap-2.5 text-xs text-yellow-400"><i class="fas fa-clock w-4"></i>Auto-reminder in 24h if not contacted</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Voice Demo -->
+<div id="demo-voice" class="demo-panel">
+<div class="max-w-md mx-auto text-center">
+<div class="glass rounded-2xl p-8 border border-white/10">
+<div class="mb-8">
+<div class="w-20 h-20 rounded-full bg-gradient-to-br from-neon-pink to-neon-purple flex items-center justify-center mx-auto mb-5 pulse-ring shadow-lg shadow-neon-pink/20"><i class="fas fa-phone-alt text-white text-2xl"></i></div>
+<h3 class="text-white font-semibold text-xl mb-2">AI Voice Agent Demo</h3>
+<p class="text-gray-400 text-sm">Experience how our AI handles incoming calls</p>
+</div>
+<div id="voiceIdle"><button onclick="startVoice()" class="btn-primary"><i class="fas fa-play"></i>Simulate Incoming Call</button></div>
+<div id="voiceActive" class="hidden">
+<div class="flex justify-center items-end gap-[3px] h-16 mb-6">
+<div class="wave-bar" style="animation-delay:0s;height:20%"></div>
+<div class="wave-bar" style="animation-delay:0.1s;height:60%"></div>
+<div class="wave-bar" style="animation-delay:0.2s;height:40%"></div>
+<div class="wave-bar" style="animation-delay:0.3s;height:80%"></div>
+<div class="wave-bar" style="animation-delay:0.15s;height:50%"></div>
+<div class="wave-bar" style="animation-delay:0.25s;height:70%"></div>
+<div class="wave-bar" style="animation-delay:0.05s;height:30%"></div>
+<div class="wave-bar" style="animation-delay:0.35s;height:90%"></div>
+<div class="wave-bar" style="animation-delay:0.12s;height:45%"></div>
+<div class="wave-bar" style="animation-delay:0.22s;height:65%"></div>
+</div>
+<div class="glass rounded-xl p-4 mb-5 text-left border border-white/5">
+<p class="text-neon-pink text-xs mb-2 font-semibold uppercase tracking-wider">AI Agent Speaking:</p>
+<p id="voiceText" class="text-gray-300 text-sm leading-relaxed min-h-[60px]"></p>
+</div>
+<button onclick="stopVoice()" class="px-6 py-2.5 rounded-full border border-red-400/40 text-red-400 text-sm hover:bg-red-400/10 transition-colors"><i class="fas fa-phone-slash mr-1.5"></i>End Call</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Receptionist Demo -->
+<div id="demo-receptionist" class="demo-panel">
+<div class="max-w-md mx-auto">
+<div class="glass rounded-2xl p-6 border border-white/10">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue to-neon-cyan flex items-center justify-center shadow-lg shadow-neon-blue/10"><i class="fas fa-headset text-white"></i></div>
+<div><h3 class="text-white font-semibold">AI Receptionist</h3><p class="text-gray-500 text-xs">Scheduling & Call Handling Demo</p></div>
+</div>
+<div id="recScene1">
+<p class="text-gray-300 text-sm mb-5">A customer just called. Watch how the AI handles it:</p>
+<div class="glass rounded-xl p-4 mb-6 border border-white/5 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0"><i class="fas fa-user text-gray-400"></i></div>
+<p class="text-white text-sm">"Hi, I'd like to book an appointment for tomorrow."</p>
+</div>
+<button onclick="playRec()" class="btn-primary w-full text-sm py-3"><i class="fas fa-play mr-1.5"></i>Show AI Response</button>
+</div>
+<div id="recScene2" class="hidden space-y-3">
+<div class="glass rounded-xl p-4 border-l-2 border-neon-blue">
+<p class="text-neon-blue text-xs mb-1.5 font-semibold uppercase tracking-wider">AI Receptionist:</p>
+<p class="text-gray-300 text-sm">"Of course! I can help you with that. What time works best for you tomorrow? We have openings at 9 AM, 11 AM, and 2 PM."</p>
+</div>
+<div class="glass rounded-xl p-4 border border-white/5 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0"><i class="fas fa-user text-gray-400"></i></div>
+<p class="text-white text-sm">"11 AM works for me."</p>
+</div>
+<div class="glass rounded-xl p-4 border-l-2 border-neon-blue">
+<p class="text-neon-blue text-xs mb-1.5 font-semibold uppercase tracking-wider">AI Receptionist:</p>
+<p class="text-gray-300 text-sm">"Perfect! You're booked for 11 AM tomorrow. I'll send a confirmation text to this number. Is there anything else I can help you with?"</p>
+</div>
+<div class="glass rounded-xl p-4 bg-green-500/[0.06] border border-green-500/20">
+<div class="flex items-center gap-2 text-green-400 text-xs mb-3 font-semibold uppercase tracking-wider"><i class="fas fa-check-circle"></i>Appointment Booked Automatically</div>
+<div class="grid grid-cols-2 gap-2 text-xs text-gray-400"><div><span class="text-gray-600">Date:</span> Tomorrow</div><div><span class="text-gray-600">Time:</span> 11:00 AM</div><div><span class="text-gray-600">Service:</span> Consultation</div><div><span class="text-gray-600">Status:</span> Confirmed</div></div>
+</div>
+<button onclick="resetRec()" class="w-full py-2.5 rounded-xl border border-white/10 text-gray-400 text-sm hover:bg-white/5 transition-colors"><i class="fas fa-redo mr-1.5"></i>Replay Demo</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Quote Calculator -->
+<div id="demo-quote" class="demo-panel">
+<div class="max-w-md mx-auto">
+<div class="glass rounded-2xl p-6 border border-white/10">
+<h3 class="text-white font-semibold mb-1">Instant Quote Calculator</h3>
+<p class="text-gray-400 text-sm mb-6">See how this works for an HVAC business</p>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-sm mb-3"><span class="text-gray-300">Number of units to service</span><span class="text-neon-cyan font-bold" id="unitCount">3</span></div>
+<input type="range" min="1" max="10" value="3" class="range-slider" oninput="updateQuote(this.value)">
+</div>
+<div>
+<div class="flex justify-between text-sm mb-3"><span class="text-gray-300">Service type</span></div>
+<div class="grid grid-cols-2 gap-2">
+<button onclick="setSType('maintenance')" id="stype-maintenance" class="stype-btn py-2.5 px-3 rounded-xl border border-neon-cyan/40 bg-neon-cyan/10 text-neon-cyan text-xs font-semibold text-center transition-all">Maintenance</button>
+<button onclick="setSType('repair')" id="stype-repair" class="stype-btn py-2.5 px-3 rounded-xl border border-white/10 text-gray-400 text-xs font-semibold text-center hover:border-white/20 transition-all">Repair</button>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-3"><span class="text-gray-300">Urgency</span></div>
+<div class="grid grid-cols-3 gap-2">
+<button onclick="setUrg('standard')" id="urg-standard" class="urg-btn py-2.5 px-2 rounded-xl border border-neon-cyan/40 bg-neon-cyan/10 text-neon-cyan text-xs font-semibold text-center transition-all">Standard</button>
+<button onclick="setUrg('priority')" id="urg-priority" class="urg-btn py-2.5 px-2 rounded-xl border border-white/10 text-gray-400 text-xs font-semibold text-center hover:border-white/20 transition-all">Priority</button>
+<button onclick="setUrg('emergency')" id="urg-emergency" class="urg-btn py-2.5 px-2 rounded-xl border border-white/10 text-gray-400 text-xs font-semibold text-center hover:border-white/20 transition-all">Emergency</button>
+</div>
+</div>
+<div class="glass rounded-xl p-5 border border-white/5">
+<div class="flex justify-between items-center mb-2"><span class="text-gray-400 text-sm">Estimated Quote</span><span class="text-3xl font-bold text-white" id="quotePrice">$297</span></div>
+<p class="text-gray-600 text-xs">This is an instant estimate. Final price confirmed after inspection.</p>
+<button class="w-full mt-4 py-2.5 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan text-sm font-semibold hover:bg-neon-cyan/20 transition-colors"><i class="fas fa-calendar mr-1.5"></i>Book This Service</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="glow-line max-w-4xl mx-auto relative z-10"></div>
+
+
+<!-- WHY CHOOSE US -->
+<section id="why-us" class="py-28 px-6 relative z-10">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-20">
+<span class="reveal section-label">Why choose us</span>
+<h2 class="reveal font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white tracking-tight">We do things<br><span class="gradient-text">differently.</span></h2>
+<p class="reveal text-gray-400 text-lg max-w-2xl mx-auto mt-6 leading-relaxed" style="transition-delay:0.1s">No hidden fees. No confusing jargon. No long contracts. Just honest work, delivered fast, with your satisfaction guaranteed.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 stagger-parent">
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-cyan/15 to-transparent flex items-center justify-center mb-5 border border-neon-cyan/20"><i class="fas fa-handshake text-neon-cyan text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">100% satisfaction guarantee</h3>
+<p class="text-gray-400 text-sm leading-relaxed">You only pay when you genuinely love the result. If you're not happy — for any reason — you walk away free. No questions asked.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-purple/15 to-transparent flex items-center justify-center mb-5 border border-neon-purple/20"><i class="fas fa-bolt text-neon-purple text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Delivered in days, not months</h3>
+<p class="text-gray-400 text-sm leading-relaxed">Most agencies take 6–8 weeks to launch a website. We're live in 5–7 business days. Your business starts growing faster.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-pink/15 to-transparent flex items-center justify-center mb-5 border border-neon-pink/20"><i class="fas fa-comments text-neon-pink text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Plain language, always</h3>
+<p class="text-gray-400 text-sm leading-relaxed">No confusing tech talk. We explain everything clearly in language you understand, at every step of the process.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400/15 to-transparent flex items-center justify-center mb-5 border border-green-400/20"><i class="fas fa-globe text-green-400 text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Multilingual & culturally aware</h3>
+<p class="text-gray-400 text-sm leading-relaxed">We serve clients from every background across Canada. Language is never a barrier — we're here to help every business owner succeed.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-400/15 to-transparent flex items-center justify-center mb-5 border border-orange-400/20"><i class="fas fa-chart-line text-orange-400 text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Real results, not vanity metrics</h3>
+<p class="text-gray-400 text-sm leading-relaxed">We measure success in actual customers calling you and finding your business — not abstract numbers that don't pay your bills.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue/15 to-transparent flex items-center justify-center mb-5 border border-neon-blue/20"><i class="fas fa-user-tie text-neon-blue text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">One dedicated contact</h3>
+<p class="text-gray-400 text-sm leading-relaxed">No being passed around a call centre. You have one person who knows your business and is always available to help.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="py-28 px-6 relative z-10">
+<div class="max-w-5xl mx-auto">
+<div class="reveal-scale glass rounded-[32px] p-10 md:p-16 relative overflow-hidden border border-white/[0.06]">
+<div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/8 via-neon-purple/5 to-neon-pink/5"></div>
+<div class="absolute top-0 right-0 w-96 h-96 bg-neon-cyan/8 rounded-full filter blur-[100px]"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-neon-purple/8 rounded-full filter blur-[100px]"></div>
+<div class="relative z-10 text-center">
+<h2 class="font-display font-bold text-3xl md:text-5xl lg:text-6xl text-white mb-5 tracking-tight">Let's get your business<br><span class="gradient-text">found.</span></h2>
+<p class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">Free consultation. No commitment. And remember — you only pay when you love the result.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+<a href="https://calendly.com/agautomationteam/30min" target="_blank" class="btn-primary text-base"><i class="fas fa-calendar-check"></i>Book Your Free Consultation</a>
+<a href="tel:+18257863021" class="btn-secondary text-base"><i class="fas fa-phone"></i>Call Us Now</a>
+</div>
+<div class="inline-flex items-center gap-2.5 px-5 py-3 rounded-full glass">
+<i class="fas fa-handshake text-neon-cyan"></i>
+<span class="text-sm text-gray-300">You <em class="text-white not-italic font-medium">only pay when you love</em> the result.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="glow-line max-w-4xl mx-auto relative z-10"></div>
+
+<!-- SERVICES -->
+<section id="services" class="py-28 px-6 relative z-10">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-20">
+<span class="reveal section-label">What we offer</span>
+<h2 class="reveal font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white tracking-tight">Services that<br><span class="gradient-text">move the needle.</span></h2>
+<p class="reveal text-gray-400 text-lg max-w-2xl mx-auto mt-6 leading-relaxed" style="transition-delay:0.1s">Everything we build is designed around one goal — more customers finding your business. Simple, honest, and risk-free: you only pay when you're satisfied.</p>
+</div>
+
+<!-- Service 01 -->
+<div class="reveal glass rounded-3xl p-8 md:p-12 mb-8 border border-white/[0.06] card-hover">
+<div class="flex flex-col lg:flex-row gap-10">
+<div class="lg:w-2/3">
+<div class="flex items-center gap-4 mb-5">
+<span class="text-6xl font-display font-bold text-white/[0.04]">01</span>
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center shadow-lg shadow-neon-cyan/15"><i class="fas fa-laptop-code text-white text-lg"></i></div>
+</div>
+<h3 class="text-2xl font-semibold text-white mb-4">Website Design & Build</h3>
+<p class="text-gray-400 mb-7 leading-relaxed">A professional, mobile-ready website that looks great and works hard for your business. Built in under a week, custom to your brand — not a template anyone else is using.</p>
+<ul class="space-y-3.5 mb-8">
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>5-page fully custom website</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>Mobile-first, fast-loading design</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>Contact form & Google Maps embed</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>Menu, services, or portfolio section</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>Live within 5–7 business days</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>Free revisions until you love it</li>
+</ul>
+<div class="glass rounded-xl p-5 border-l-2 border-neon-cyan">
+<p class="text-white font-medium text-sm mb-1">Ready to see what your site could look like?</p>
+<p class="text-gray-400 text-sm">Book a free consultation. We'll show you a draft based on your real business — no charge, no obligation, no pressure.</p>
+</div>
+</div>
+<div class="lg:w-1/3 flex items-center justify-center">
+<div class="w-full max-w-xs aspect-[4/5] rounded-2xl bg-gradient-to-br from-neon-cyan/10 to-neon-purple/10 border border-white/5 flex items-center justify-center">
+<div class="text-center"><i class="fas fa-desktop text-6xl text-white/10 mb-4"></i><p class="text-white/30 text-sm font-medium">Website Preview</p></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Service 02 -->
+<div class="reveal glass rounded-3xl p-8 md:p-12 mb-8 border border-white/[0.06] card-hover" style="transition-delay:0.1s">
+<div class="flex flex-col lg:flex-row gap-10">
+<div class="lg:w-2/3">
+<div class="flex items-center gap-4 mb-5">
+<span class="text-6xl font-display font-bold text-white/[0.04]">02</span>
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-purple to-neon-pink flex items-center justify-center shadow-lg shadow-neon-purple/15"><i class="fas fa-map-marker-alt text-white text-lg"></i></div>
+</div>
+<h3 class="text-2xl font-semibold text-white mb-4">Google & Online Presence Setup</h3>
+<p class="text-gray-400 mb-7 leading-relaxed">Most businesses have a broken or unclaimed Google listing. We fix it, optimize it, and get you showing up when nearby customers are searching. Done right, this alone brings in new customers every week.</p>
+<ul class="space-y-3.5 mb-8">
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-purple/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-purple text-[10px]"></i></span>Google Business Profile setup & optimization</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-purple/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-purple text-[10px]"></i></span>Correct phone, hours, photos, description</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-purple/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-purple text-[10px]"></i></span>Local Google Maps ranking strategy</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-purple/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-purple text-[10px]"></i></span>Review collection system setup</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-purple/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-purple text-[10px]"></i></span>Monthly monitoring & updates</li>
+</ul>
+<div class="glass rounded-xl p-5 border-l-2 border-neon-purple">
+<p class="text-white font-medium text-sm mb-1">Find out how visible your business is right now.</p>
+<p class="text-gray-400 text-sm">In your free consultation we do a live audit of your Google presence and show you exactly what customers currently see.</p>
+</div>
+</div>
+<div class="lg:w-1/3 flex items-center justify-center">
+<div class="w-full max-w-xs aspect-[4/5] rounded-2xl bg-gradient-to-br from-neon-purple/10 to-neon-pink/10 border border-white/5 flex items-center justify-center">
+<div class="text-center"><i class="fab fa-google text-6xl text-white/10 mb-4"></i><p class="text-white/30 text-sm font-medium">Google Presence</p></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Service 03 -->
+<div class="reveal glass rounded-3xl p-8 md:p-12 mb-8 border border-white/[0.06] card-hover" style="transition-delay:0.2s">
+<div class="flex flex-col lg:flex-row gap-10">
+<div class="lg:w-2/3">
+<div class="flex items-center gap-4 mb-5">
+<span class="text-6xl font-display font-bold text-white/[0.04]">03</span>
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-pink to-neon-blue flex items-center justify-center shadow-lg shadow-neon-pink/15"><i class="fas fa-robot text-white text-lg"></i></div>
+</div>
+<h3 class="text-2xl font-semibold text-white mb-4">Marketing Automation & Lead Follow-Up</h3>
+<p class="text-gray-400 mb-7 leading-relaxed">When you miss a call, that customer moves on. We set up systems that automatically text back missed callers, follow up with leads, and request reviews after every job — running 24/7 without you touching anything.</p>
+<ul class="space-y-3.5 mb-8">
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-pink/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-pink text-[10px]"></i></span>Missed-call auto text-back system</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-pink/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-pink text-[10px]"></i></span>Lead capture with instant notifications</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-pink/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-pink text-[10px]"></i></span>Automated review request after each job</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-pink/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-pink text-[10px]"></i></span>Monthly performance reporting</li>
+<li class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-pink/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-pink text-[10px]"></i></span>Fully managed — zero effort from you</li>
+</ul>
+<div class="glass rounded-xl p-5 border-l-2 border-neon-pink">
+<p class="text-white font-medium text-sm mb-1">How many leads are slipping through right now?</p>
+<p class="text-gray-400 text-sm">Let's find out together. A free 30-minute call is all it takes to see exactly what this could recover for your business.</p>
+</div>
+</div>
+<div class="lg:w-1/3 flex items-center justify-center">
+<div class="w-full max-w-xs aspect-[4/5] rounded-2xl bg-gradient-to-br from-neon-pink/10 to-neon-blue/10 border border-white/5 flex items-center justify-center">
+<div class="text-center"><i class="fas fa-cogs text-6xl text-white/10 mb-4"></i><p class="text-white/30 text-sm font-medium">Automation</p></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Full Bundle -->
+<div class="reveal-scale glass rounded-3xl p-8 md:p-12 relative overflow-hidden border border-white/[0.06]" style="transition-delay:0.3s">
+<div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 via-neon-purple/5 to-neon-pink/5"></div>
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-cyan/5 rounded-full filter blur-[120px]"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-5">
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-cyan via-neon-purple to-neon-pink flex items-center justify-center shadow-lg shadow-neon-cyan/15"><i class="fas fa-star text-white text-lg"></i></div>
+<span class="px-3 py-1 rounded-full bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan text-xs font-bold tracking-wide uppercase">Recommended</span>
+</div>
+<h3 class="text-2xl md:text-3xl font-semibold text-white mb-5">Full Growth Bundle</h3>
+<p class="text-gray-400 mb-8 leading-relaxed max-w-2xl">All three services working together — website, Google presence, and automation. Everything your business needs to compete online, managed by one dedicated team with one point of contact.</p>
+<div class="grid md:grid-cols-2 gap-3 mb-8">
+<div class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>Everything in all three services</div>
+<div class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>Priority build with faster turnaround</div>
+<div class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>Monthly strategy check-in call</div>
+<div class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>One dedicated contact — always responsive</div>
+<div class="flex items-center gap-3 text-gray-300 text-sm"><span class="w-5 h-5 rounded-full bg-neon-cyan/10 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-neon-cyan text-[10px]"></i></span>You only pay when you're completely satisfied</div>
+</div>
+<div class="glass rounded-xl p-5 border-l-2 border-neon-cyan">
+<p class="text-white font-medium text-sm mb-1">The complete package for businesses that are serious about growth.</p>
+<p class="text-gray-400 text-sm">Tell us about your business. We'll walk you through exactly what we'd build — all in one free, no-pressure conversation.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="glow-line max-w-4xl mx-auto relative z-10"></div>
+
+
+<!-- WHO WE ARE -->
+<section id="about" class="py-28 px-6 relative z-10">
+<div class="max-w-6xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<span class="reveal section-label">Who we are</span>
+<h2 class="reveal font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-8 tracking-tight">Digital experts who<br><span class="gradient-text">genuinely care.</span></h2>
+<p class="reveal text-gray-400 leading-relaxed mb-6 text-[15px]">AG Automation was built on one belief: every business — no matter how new, how small, or where they come from — deserves a professional digital presence.</p>
+<p class="reveal text-gray-400 leading-relaxed mb-10 text-[15px]" style="transition-delay:0.1s">We bring deep expertise in web design, Google optimization, and marketing automation, and we apply it where it's needed most: the hardworking, owner-operated businesses that keep communities going.</p>
+<div class="grid grid-cols-2 gap-4 stagger-parent">
+<div class="glass rounded-xl p-5 stagger-child">
+<i class="fas fa-handshake text-neon-cyan text-xl mb-3"></i>
+<h4 class="text-white font-semibold text-sm mb-1.5">Zero risk, always</h4>
+<p class="text-gray-400 text-xs leading-relaxed">You only pay when you love the result. Our guarantee isn't fine print — it's how we do business.</p>
+</div>
+<div class="glass rounded-xl p-5 stagger-child">
+<i class="fas fa-bolt text-neon-purple text-xl mb-3"></i>
+<h4 class="text-white font-semibold text-sm mb-1.5">Fast & reliable</h4>
+<p class="text-gray-400 text-xs leading-relaxed">Websites live in 5–7 days. We move quickly because your business shouldn't have to wait.</p>
+</div>
+<div class="glass rounded-xl p-5 stagger-child">
+<i class="fas fa-globe text-neon-pink text-xl mb-3"></i>
+<h4 class="text-white font-semibold text-sm mb-1.5">Welcoming to all</h4>
+<p class="text-gray-400 text-xs leading-relaxed">We work with business owners from every background. Everyone deserves a fair shot at success online.</p>
+</div>
+<div class="glass rounded-xl p-5 stagger-child">
+<i class="fas fa-chart-line text-green-400 text-xl mb-3"></i>
+<h4 class="text-white font-semibold text-sm mb-1.5">Results that matter</h4>
+<p class="text-gray-400 text-xs leading-relaxed">We measure success in real customers and real calls — not dashboards that don't pay your rent.</p>
+</div>
+</div>
+</div>
+<div class="reveal-right">
+<div class="glass rounded-[28px] p-8 md:p-10 relative overflow-hidden border border-white/[0.06]">
+<div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-neon-purple/5"></div>
+<div class="relative z-10">
+<div class="grid grid-cols-3 gap-4 mb-10">
+<div class="text-center">
+<div class="stat-number">100%</div>
+<p class="text-gray-500 text-xs mt-2 font-medium">Satisfaction<br>guarantee</p>
+</div>
+<div class="text-center">
+<div class="stat-number">7</div>
+<p class="text-gray-500 text-xs mt-2 font-medium">Days avg.<br>launch</p>
+</div>
+<div class="text-center">
+<div class="stat-number text-4xl md:text-5xl">🇨🇦</div>
+<p class="text-gray-500 text-xs mt-2 font-medium">All of<br>Canada</p>
+</div>
+</div>
+<div class="glow-line mb-10"></div>
+<h3 class="font-display font-bold text-2xl text-white mb-5">Our mission</h3>
+<h4 class="text-xl text-white mb-5 leading-snug">Every business owner deserves a <span class="gradient-text">level playing field</span> online.</h4>
+<p class="text-gray-400 text-sm leading-relaxed mb-4">Canada is full of extraordinary businesses run by people who work incredibly hard. The tradesperson who shows up at midnight. The restaurant owner who's been perfecting their craft for years. The entrepreneur who started with very little and built something the whole community relies on.</p>
+<p class="text-gray-400 text-sm leading-relaxed mb-4">Too many of those businesses are invisible online — not because they don't have something worth finding, but because the tools and knowledge weren't accessible to them. Big agencies were too expensive. DIY was too complicated. And nobody took the time to actually help.</p>
+<p class="text-gray-400 text-sm leading-relaxed">AG Automation exists to change that. We bring professional-grade digital marketing directly to the businesses that need it most — with clear communication, fair pricing, and a guarantee that means you never take a financial risk with us.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="py-28 px-6 relative z-10">
+<div class="max-w-5xl mx-auto">
+<div class="text-center mb-16">
+<span class="reveal section-label">Get in touch</span>
+<h2 class="reveal font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white tracking-tight">Ready to <span class="gradient-text">grow?</span></h2>
+<p class="reveal text-gray-400 text-lg max-w-xl mx-auto mt-5 leading-relaxed" style="transition-delay:0.1s">Pick the easiest way for you. We're here to help every business owner succeed.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-6 stagger-parent">
+<a href="https://calendly.com/agautomationteam/30min" target="_blank" class="glass rounded-2xl p-8 card-hover stagger-child text-center group border border-white/[0.06]">
+<div class="contact-icon mx-auto mb-5 group-hover:shadow-lg group-hover:shadow-neon-cyan/20">
+<i class="fas fa-calendar-check text-neon-cyan text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-2">Book a Free Call</h3>
+<p class="text-gray-400 text-sm mb-4 leading-relaxed">30-minute consultation. No charge, no obligation, no pressure.</p>
+<span class="text-neon-cyan text-sm font-semibold inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">Schedule Now <i class="fas fa-arrow-right text-xs"></i></span>
+</a>
+<a href="tel:+18257863021" class="glass rounded-2xl p-8 card-hover stagger-child text-center group border border-white/[0.06]" style="transition-delay:0.1s">
+<div class="contact-icon mx-auto mb-5 group-hover:shadow-lg group-hover:shadow-neon-purple/20">
+<i class="fas fa-phone-alt text-neon-purple text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-2">Call Us</h3>
+<p class="text-gray-400 text-sm mb-4 leading-relaxed">Speak directly with our team. We're available during business hours.</p>
+<span class="text-neon-purple text-sm font-semibold inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">+1 (825) 786-3021 <i class="fas fa-arrow-right text-xs"></i></span>
+</a>
+<a href="mailto:agautomationteam@gmail.com" class="glass rounded-2xl p-8 card-hover stagger-child text-center group border border-white/[0.06]" style="transition-delay:0.2s">
+<div class="contact-icon mx-auto mb-5 group-hover:shadow-lg group-hover:shadow-neon-pink/20">
+<i class="fas fa-envelope text-neon-pink text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-white mb-2">Email Us</h3>
+<p class="text-gray-400 text-sm mb-4 leading-relaxed">Send us a message anytime. We reply within a few hours.</p>
+<span class="text-neon-pink text-sm font-semibold inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">agautomationteam@gmail.com <i class="fas fa-arrow-right text-xs"></i></span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="py-28 px-6 relative z-10">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-20">
+<span class="reveal section-label">Our expertise</span>
+<h2 class="reveal font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white tracking-tight">Deep skills.<br><span class="gradient-text">Real results.</span></h2>
+<p class="reveal text-gray-400 text-lg max-w-2xl mx-auto mt-6 leading-relaxed" style="transition-delay:0.1s">We bring hands-on expertise across every tool your business needs to grow online. No guesswork — just proven methods applied by people who know what they're doing.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 stagger-parent">
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-cyan/15 to-transparent flex items-center justify-center mb-5 border border-neon-cyan/20"><i class="fas fa-globe text-neon-cyan text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Website design & build</h3>
+<p class="text-gray-400 text-sm leading-relaxed">Custom, mobile-first websites built from scratch. Fast-loading, beautifully designed, and built to convert visitors into real customers — not just look pretty.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-purple/15 to-transparent flex items-center justify-center mb-5 border border-neon-purple/20"><i class="fas fa-map-marker-alt text-neon-purple text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Google Business & local SEO</h3>
+<p class="text-gray-400 text-sm leading-relaxed">We know exactly how Google's local algorithm works. We optimize your listing, build citations, and get you showing up when customers nearby are actively searching for your service.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-pink/15 to-transparent flex items-center justify-center mb-5 border border-neon-pink/20"><i class="fas fa-cogs text-neon-pink text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Marketing automation</h3>
+<p class="text-gray-400 text-sm leading-relaxed">Missed-call text-back, automated follow-ups, lead capture, review requests — systems that work for you 24/7 so you never lose a lead to a missed call again.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-neon-blue/15 to-transparent flex items-center justify-center mb-5 border border-neon-blue/20"><i class="fas fa-shopping-cart text-neon-blue text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Online booking & ordering</h3>
+<p class="text-gray-400 text-sm leading-relaxed">For restaurants, service businesses, and retailers — seamless online booking and inquiry systems that work beautifully on any device and drive real revenue.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-400/15 to-transparent flex items-center justify-center mb-5 border border-orange-400/20"><i class="fas fa-share-alt text-orange-400 text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Social media presence</h3>
+<p class="text-gray-400 text-sm leading-relaxed">Consistent, professional branding across Instagram, Facebook, and Google. We set up your profiles and connect them to your website for a unified online presence.</p>
+</div>
+<div class="glass rounded-2xl p-7 card-hover stagger-child">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400/15 to-transparent flex items-center justify-center mb-5 border border-green-400/20"><i class="fas fa-language text-green-400 text-xl"></i></div>
+<h3 class="text-lg font-semibold text-white mb-2.5">Multilingual support</h3>
+<p class="text-gray-400 text-sm leading-relaxed">We serve business owners from every background across Canada. We understand the unique challenges of building a customer base and communicate clearly in the language that works best for you.</p>
+</div>
+</div>
+<div class="reveal text-center mt-14">
+<p class="text-gray-400">We're <em class="text-white not-italic">building our portfolio</em> — and your business could be our next success story.</p>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-16 px-6 border-t border-white/[0.06] relative z-10">
+<div class="max-w-6xl mx-auto">
+<div class="grid md:grid-cols-4 gap-12 mb-14">
+<div>
+<div class="flex items-center gap-3 mb-5">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center shadow-lg shadow-neon-cyan/15">
+<span class="text-white font-bold text-lg" style="font-family:'Space Grotesk',sans-serif">AG</span>
+</div>
+<span class="font-display font-bold text-xl text-white">AG Automation</span>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed">AI-powered digital marketing for Canadian small businesses. You only pay when you love the result.</p>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-5 text-sm uppercase tracking-wider">Services</h4>
+<ul class="space-y-3">
+<li><a href="#services" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">Website Design</a></li>
+<li><a href="#services" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">Google Presence</a></li>
+<li><a href="#services" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">Marketing Automation</a></li>
+<li><a href="#ai-demos" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">AI Chatbots</a></li>
+<li><a href="#ai-demos" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">Voice Agents</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-5 text-sm uppercase tracking-wider">Company</h4>
+<ul class="space-y-3">
+<li><a href="#about" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">About Us</a></li>
+<li><a href="#how-it-works" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">How It Works</a></li>
+<li><a href="#why-us" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">Why Choose Us</a></li>
+<li><a href="#contact" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-5 text-sm uppercase tracking-wider">Contact</h4>
+<ul class="space-y-4">
+<li><a href="tel:+18257863021" class="flex items-center gap-3 text-gray-400 text-sm hover:text-white transition-colors"><i class="fas fa-phone text-neon-cyan w-4"></i>+1 (825) 786-3021</a></li>
+<li><a href="mailto:agautomationteam@gmail.com" class="flex items-center gap-3 text-gray-400 text-sm hover:text-white transition-colors"><i class="fas fa-envelope text-neon-purple w-4"></i>agautomationteam@gmail.com</a></li>
+<li><a href="https://calendly.com/agautomationteam/30min" target="_blank" class="flex items-center gap-3 text-gray-400 text-sm hover:text-white transition-colors"><i class="fas fa-calendar text-neon-pink w-4"></i>Book Free Call</a></li>
+</ul>
+</div>
+</div>
+<div class="glow-line mb-8"></div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-gray-600 text-sm">© <span id="year"></span> AG Automation. All rights reserved.</p>
+<div class="flex items-center gap-2 text-sm text-gray-500">
+<i class="fas fa-handshake text-neon-cyan"></i>
+<span>You <em class="text-gray-400 not-italic">only pay when you love</em> the result.</span>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+
+// ===== CANVAS PARTICLES =====
+const cvs=document.getElementById('cvs'),ctx=cvs.getContext('2d');
+let pts=[];
+function resize(){cvs.width=innerWidth;cvs.height=innerHeight}
+resize();addEventListener('resize',resize);
+class P{constructor(){this.x=Math.random()*cvs.width;this.y=Math.random()*cvs.height;this.s=Math.random()*1.5+0.3;this.vx=(Math.random()-0.5)*0.25;this.vy=(Math.random()-0.5)*0.25;this.o=Math.random()*0.4+0.1}
+update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0)this.x=cvs.width;if(this.x>cvs.width)this.x=0;if(this.y<0)this.y=cvs.height;if(this.y>cvs.height)this.y=0}
+draw(){ctx.fillStyle=`rgba(0,240,255,${this.o})`;ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
+for(let i=0;i<70;i++)pts.push(new P());
+(function loop(){ctx.clearRect(0,0,cvs.width,cvs.height);pts.forEach(p=>{p.update();p.draw()});pts.forEach((p1,i)=>{pts.slice(i+1).forEach(p2=>{let dx=p1.x-p2.x,dy=p1.y-p2.y,d=Math.sqrt(dx*dx+dy*dy);if(d<140){ctx.strokeStyle=`rgba(0,240,255,${0.08*(1-d/140)})`;ctx.lineWidth=0.4;ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke()}})});requestAnimationFrame(loop)})();
+
+// ===== SCROLL REVEAL =====
+const obs=new IntersectionObserver((e)=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('active')})},{threshold:0.08,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger-parent').forEach(el=>obs.observe(el));
+
+// ===== NAVBAR =====
+const navBox=document.getElementById('navBox');
+addEventListener('scroll',()=>{if(scrollY>60){navBox.classList.add('glass-strong')}else{navBox.classList.remove('glass-strong')}},{passive:true});
+
+// ===== MOBILE MENU =====
+const menuBtn=document.getElementById('menuBtn'),closeMenu=document.getElementById('closeMenu'),mobileMenu=document.getElementById('mobileMenu');
+menuBtn.addEventListener('click',()=>mobileMenu.classList.add('open'));
+closeMenu.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+
+// ===== DEMO TABS =====
+function switchDemo(n){document.querySelectorAll('.demo-panel').forEach(d=>d.classList.remove('active'));document.getElementById('demo-'+n).classList.add('active');document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+n).classList.add('active')}
+function showDemo(n){switchDemo(n);document.getElementById('ai-demos').scrollIntoView({behavior:'smooth'})}
+
+// ===== CHATBOT =====
+const chatReps={'What services do you offer?':'We offer website design, Google Business optimization, marketing automation, AI chatbots, voice agents, and lead generation systems. Everything is built to get you more customers.','How much does it cost?':'Our pricing is tailored to your needs, and remember — you only pay when you love the result. Book a free consultation and we\'ll give you a clear quote with no obligation.','Book a consultation':'I\'d be happy to help! Please share your name, business name, and phone number, and our team will reach out within 2 hours to schedule your free 30-minute consultation.','default':'That\'s a great question! I\'d love to help you with that. Would you like to speak with one of our experts? Just leave your number and we\'ll call you back within 2 hours — or you can email us at agautomationteam@gmail.com'};
+function addChat(t,isU=false){const box=document.getElementById('chatBox');const d=document.createElement('div');d.className='chat-bubble flex gap-3 '+(isU?'flex-row-reverse':'');d.innerHTML='<div class="w-8 h-8 rounded-full '+(isU?'bg-white/10':'bg-gradient-to-br from-neon-cyan to-neon-purple')+' flex-shrink-0 flex items-center justify-center"><i class="fas '+(isU?'fa-user text-gray-400':'fa-robot text-white')+' text-xs"></i></div><div class="glass rounded-2xl '+(isU?'rounded-tr-sm':'rounded-tl-sm')+' px-4 py-3 max-w-[82%]"><p class="text-gray-300 text-sm leading-relaxed">'+t+'</p></div>';box.appendChild(d);box.scrollTop=box.scrollHeight}
+function sendChat(){const inp=document.getElementById('chatInput'),t=inp.value.trim();if(!t)return;addChat(t,true);inp.value='';setTimeout(()=>{let r=chatReps['default'];for(let k in chatReps){if(t.toLowerCase().includes(k.toLowerCase().replace(/[^a-z]/g,''))){r=chatReps[k];break}}addChat(r)},700)}
+function quickChat(t){document.getElementById('chatInput').value=t;sendChat()}
+
+// ===== LEAD GEN =====
+function submitLead(){const n=document.getElementById('leadName').value,p=document.getElementById('leadPhone').value,t=document.getElementById('leadType').value;if(!n||!p||!t){alert('Please fill in all fields');return}document.getElementById('leadForm').classList.add('hidden');document.getElementById('leadSuccess').classList.remove('hidden')}
+
+// ===== VOICE DEMO =====
+let vi;
+const vScript=["Hello! Thank you for calling. I'm the AI assistant for AG Automation.","I can help you learn about our services, book a free consultation, or answer any questions about getting your business found online.","We specialize in websites, Google presence, and AI automation for Canadian small businesses.","And remember — you only pay when you genuinely love the result. There's absolutely no risk."];
+function startVoice(){document.getElementById('voiceIdle').classList.add('hidden');document.getElementById('voiceActive').classList.remove('hidden');let l=0,c=0;const el=document.getElementById('voiceText');el.textContent='';vi=setInterval(()=>{if(l>=vScript.length){clearInterval(vi);setTimeout(()=>el.textContent+='\n\n[Call ended. Customer interested in booking consultation.]',800);return}if(c<vScript[l].length){el.textContent+=vScript[l][c];c++}else{l++;c=0;if(l<vScript.length)el.textContent+='\n\n'}},45)}
+function stopVoice(){clearInterval(vi);document.getElementById('voiceActive').classList.add('hidden');document.getElementById('voiceIdle').classList.remove('hidden')}
+
+// ===== RECEPTIONIST =====
+function playRec(){document.getElementById('recScene1').classList.add('hidden');document.getElementById('recScene2').classList.remove('hidden')}
+function resetRec(){document.getElementById('recScene2').classList.add('hidden');document.getElementById('recScene1').classList.remove('hidden')}
+
+// ===== QUOTE CALCULATOR =====
+let sType='maintenance',urg='standard';
+const bPrice={maintenance:99,repair:149},uMult={standard:1,priority:1.3,emergency:1.8};
+function updateQuote(u){document.getElementById('unitCount').textContent=u;calcQ()}
+function setSType(t){sType=t;document.querySelectorAll('.stype-btn').forEach(b=>{b.classList.remove('border-neon-cyan/40','bg-neon-cyan/10','text-neon-cyan');b.classList.add('border-white/10','text-gray-400')});document.getElementById('stype-'+t).classList.remove('border-white/10','text-gray-400');document.getElementById('stype-'+t).classList.add('border-neon-cyan/40','bg-neon-cyan/10','text-neon-cyan');calcQ()}
+function setUrg(u){urg=u;document.querySelectorAll('.urg-btn').forEach(b=>{b.classList.remove('border-neon-cyan/40','bg-neon-cyan/10','text-neon-cyan');b.classList.add('border-white/10','text-gray-400')});document.getElementById('urg-'+u).classList.remove('border-white/10','text-gray-400');document.getElementById('urg-'+u).classList.add('border-neon-cyan/40','bg-neon-cyan/10','text-neon-cyan');calcQ()}
+function calcQ(){const u=parseInt(document.querySelector('.range-slider').value),base=bPrice[sType]*u,total=Math.round(base*uMult[urg]);document.getElementById('quotePrice').textContent='$'+total}
+
+// Set year
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
